@@ -47,15 +47,34 @@ In detail, `login.py` connects to `casaSalute.db` with `create_db=True` and call
 In short: **just run `login.py`** — make sure it sits in the same folder as `tabelledb.py` and `query.py`, and the database will be set up automatically on first launch.
 
 ## Requirements
-
+ 
 - **Python**: the project was developed and byte-compiled against Python 3.8 and 3.10, so one of those versions is the safest choice. It may not run as-is on more recent Dash/Python combinations without adapting the imports (see below).
 - Install the Python dependencies listed in `requirements.txt`:
-
 ```bash
 pip install -r requirements.txt
 ```
-
+ 
 `requirements.txt` pins older versions of the Dash sub-packages (`dash-core-components`, `dash-html-components`, `dash-table`) on purpose, because `login.py` imports them as separate packages (`import dash_core_components as dcc`, `import dash_html_components as html`, `import dash_table`). Since Dash 2.0, these were merged into the main `dash` package (`dash.dcc`, `dash.html`, `dash.dash_table`). If you'd rather use a modern Dash version, update the imports in `login.py` accordingly instead of installing the legacy packages — see [Known issues](#known-issues--things-to-review).
+ 
+### Setting up the environment
+ 
+It's recommended to install the dependencies inside an isolated environment rather than system-wide, to avoid version conflicts with other projects. Either a standard Python virtual environment or a Conda environment works fine; pick whichever you already have available.
+ 
+**Using `venv` (standard Python):**
+ 
+```bash
+python3.10 -m venv venv
+source venv/bin/activate        # on Windows: venv\Scripts\activate
+pip install -r requirements.txt
+```
+ 
+**Using Conda:**
+ 
+```bash
+conda create -n casasalute python=3.10
+conda activate casasalute
+pip install -r requirements.txt
+```
 
 ## How to run it
 
